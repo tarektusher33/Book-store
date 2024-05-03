@@ -18,12 +18,16 @@ export class BookService {
     } else return 'Book is not found';
   }
 
-  deleteBookService (bookId : string) : string {
+  deleteBookService(bookId: string): string {
     let flag = 0;
     this.books = this.books.filter((book) => {
-        if(book.id == bookId) flag = 1;
-        return book.id != bookId;
-    })
-    return (flag ? "Book is not found" : "Book has been deleted");
+      if (book.id == bookId) flag = 1;
+      return book.id != bookId;
+    });
+    return flag ? 'Book is not found' : 'Book has been deleted';
+  }
+
+  findAllBookService() : Book[] {
+    return this.books;
   }
 }
