@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { Book } from './data/book.dto';
 
+@Injectable()
 export class BookService {
   public books: Book[] = [];
 
@@ -27,7 +29,7 @@ export class BookService {
     return flag ? 'Book is not found' : 'Book has been deleted';
   }
 
-  findAllBookService() : Book[] {
+  findAllBookService(): Book[] {
     return this.books;
   }
 }
