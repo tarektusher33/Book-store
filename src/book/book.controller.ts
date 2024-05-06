@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './data/book.dto';
@@ -35,7 +36,7 @@ export class BookController {
   }
 
   @Post('/add')
-  addBook(@Body() book: Book): string {
+  addBook(@Body( new ValidationPipe() ) book: Book): string {
     return this.bookService.addBookInfoService(book);
   }
 }
