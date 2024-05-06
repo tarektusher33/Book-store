@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -18,6 +19,10 @@ export class BookController {
   getAllBooks(): Book[] {
     return this.bookService.findAllBookService();
   }
+  @Get ('/find/:id')
+  getBookById(@Param('id', ParseIntPipe)   bookId : number) : any {
+    return this.bookService.findBookByIdService(bookId);
+  }
 
   @Put('/updatebook')
   updateBooks(@Body() book: Book): string {
@@ -25,7 +30,7 @@ export class BookController {
   }
 
   @Delete('/delete/:id')
-  deleteBook(@Param('id') bookId: string): string {
+  deleteBook(@Param('id') bookId: number): string {
     return this.bookService.deleteBookService(bookId);
   }
 
