@@ -7,10 +7,12 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './data/book.dto';
+import { BookGuard } from './book.guard';
 
 @Controller('book')
 export class BookController {
@@ -31,6 +33,7 @@ export class BookController {
   }
 
   @Delete('/delete/:id')
+  @UseGuards(new BookGuard())
   deleteBook(@Param('id') bookId: number): string {
     return this.bookService.deleteBookService(bookId);
   }
