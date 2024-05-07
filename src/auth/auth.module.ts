@@ -26,6 +26,5 @@ import { CONSTANTS } from 'src/constants';
 })
 export class AuthModule {
   constructor(){
-    console.log(process.env.key);
   }
 }

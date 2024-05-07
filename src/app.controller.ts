@@ -14,7 +14,6 @@ export class AppController {
     return this.authService.generateToken(req.user);
   }
 
-
   @Get("android-developer")
   @UseGuards(AuthGuard('jwt'), new RoleGurad(CONSTANTS.ROLES.ANDROID_DEVELOPER))
   androidDeveloper(@Request() req) : string {
