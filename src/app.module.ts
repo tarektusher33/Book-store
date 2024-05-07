@@ -11,17 +11,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     BookModule,
     UserModule,
     AuthModule,
-    // ConfigModule.forRoot({
-    //   isGlobal: true,
-    //   envFilePath: '.local.env',
-    //   // envFilePath : ".prod.env"
-    // }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forRoot({
-        isGlobal : true,
-        envFilePath : ".local.env",
-        // envFilePath : ".prod.env",
-      })],
+      imports: [
+        ConfigModule.forRoot({
+          isGlobal: true,
+          envFilePath: '.local.env',
+          // envFilePath : ".prod.env",
+        }),
+      ],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: configService.get('DB_HOST'),
@@ -32,7 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         synchronize: configService.get<boolean>('DB_SYNC'),
       }),
       inject: [ConfigService],
-    })
+    }),
   ],
 
   controllers: [AppController],
